@@ -3,20 +3,7 @@ var index = function(){
    var ctx = {};
 }
 
-index.prototype.local = function(req,cb){
- 	cb(null,{});
-}
 
-index.prototype.admin = function(req,cb){
-	var segments = req.segments;
-	var ctx = {
-		title:"Admin Panel",
-		admin:true,
-		authenticated:false
-	};
-
-	cb(null,ctx);
-}
 
 index.prototype.render = function(req,callback){
 	ctx = {

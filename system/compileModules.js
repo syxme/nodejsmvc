@@ -22,6 +22,7 @@ module.exports.ex = function(cb){
 					models[Object.keys(tmp)] = tmp[Object.keys(tmp)];
 					break;
 				case config.compiler.scanOptions.controller:
+				console.log(Object.keys(tmp));
 					controllers[Object.keys(tmp)] = tmp[Object.keys(tmp)];
 					break;
 				default:

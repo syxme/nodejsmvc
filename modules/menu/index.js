@@ -1,16 +1,24 @@
 var async = require("async");
 var BasicModule = function(){
-   var ctx = {};
+   
 }
+BasicModule.prototype.adctx = {
+	title:"Модуль управления меню",
+	link:"Заглавное меню",
+	url:"menu"
+};
+
 BasicModule.prototype.admin = function(req,callback){
-	ctx = {
+	var ctx = {
 		title:"Меню"
 	};
+	ctx = Engine.view.menu_edit(ctx);
+	callback(null,ctx);
 
 }
 
 BasicModule.prototype.render = function(req,callback){
-
+	var ctx = {};
 	// async.auto({
 	// 	users:function(cb,results){ models.User.find({}).exec(cb)}
 	// },function(err,results){

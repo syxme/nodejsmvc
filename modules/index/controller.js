@@ -1,5 +1,4 @@
 var async = require("async");
-var _ = require("lodash");
 
 var exec = function(req, res) {
 	var ctx = {};
@@ -18,6 +17,6 @@ var exec = function(req, res) {
 	});		
 }
 
-var routes = ['/','/admin/','/admin/:module'];
+var routes = ['/'];
 
-exports.index = {routes:routes,execute:exec};
+exports.admin = {routes:routes,execute:exec};

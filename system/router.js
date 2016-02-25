@@ -13,6 +13,7 @@ initApi = function(app) {
 		module.exports = models = e.models;
 		
 		Object.keys(e.controllers).forEach(function (i) {
+
 			Object.keys(e.controllers[i].routes).forEach(function(route){
 				app.get(e.controllers[i].routes[route], e.controllers[i].execute);
 			});
