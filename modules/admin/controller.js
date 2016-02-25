@@ -4,7 +4,7 @@ var exec = function(req, res) {
 	var ctx = {};
 	var segments = hls.segments(req);
 	async.parallel({
-		context	:function(cb,results){modules['admin'].admin({segments:segments},cb) },
+		context	:function(cb,results){modules['admin'].initial(segments,cb) },
 	},function(err,results){
 		res.send(Engine.view.admin_layout(results.context));
 	});		

@@ -5,7 +5,7 @@ var exec = function(req, res) {
 	var segments = hls.segments(req);
 	//console.log(Engine);
 	async.parallel({
-		context	:function(cb,results){modules['index'].render({segments:segments},cb) },
+		context	:function(cb,results){modules['index'].render(segments,cb) },
 		header	:function(cb,results){cb(null,Engine.view.index_header(ctx))},
 		footer	:function(cb,results){cb(null,Engine.view.index_footer(ctx))},
 		scripts	:function(cb,results){cb(null,Engine.view.index_scripts(ctx))},

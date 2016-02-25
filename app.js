@@ -11,11 +11,6 @@ var express	= require('express'),
 	redisStore	= require('connect-redis')(session);
 
 
-
-app.set('views', './public');
-app.engine('hbs', cons.handlebars);
-app.set('view engine', 'hbs');
-
 app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -37,4 +32,4 @@ var ip = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 
 server.listen(port, ip);
 
-console.log("App Started:"+port);
+console.log("work engine "+ip+':'+port);

@@ -2,7 +2,7 @@ var async = require("async");
 var BasicModule = function(){
    
 }
-BasicModule.prototype.adctx = {
+BasicModule.prototype.info = {
 	title:"Модуль управления меню",
 	link:"Заглавное меню",
 	url:"menu"
