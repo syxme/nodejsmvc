@@ -22,6 +22,7 @@ initApi = function(app) {
 		Object.keys(models).forEach(function (md) {
 		 	Object.keys(models[md].access.admin).forEach(function (post) {
 		 		app.post(api+md+'/'+models[md].access.admin[post],models[md][models[md].access.admin[post]]);
+		 		console.log(api+md+'/'+models[md].access.admin[post]);
 		 	});
 		});
 	});

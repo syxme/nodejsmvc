@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <style type="text/css">
+    body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
+    <title>Account - {{title}}</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+    {{#if signin}}
+      <form class="form-signin" method="post" action="/api/account/auth">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+      {{else}}
+      <form class="form-signin" method="post" action="/api/account/signup" style="max-width: 635px;">
+
+        <h2 class="form-signin-heading">Please sign Up</h2>
+        {{#if error.info}}
+        <div class="form-group has-error">
+          {{#each error.info}}
+          <label class="control-label">{{this}}</label>
+          <br>
+          {{/each}}
+        </div>
+        {{/if}}
+        <div class="form-group {{#if error.login}}has-error{{/if}}">
+       		<label class="control-label" for="inputLogin">Login name</label>
+	        <input value="{{data.login}}" type="text" id="inputLogin" name="login" class="form-control" placeholder="alex"required autofocus>
+        </div>
+
+        <div class="form-group {{#if error.name}}has-error{{/if}}">
+  		    <label for="inputName" class="control-label">Last and first name</label>
+          <input value="{{data.name}}" type="text" id="inputName" name="name" class="form-control" placeholder="Alex Many" required>
+        </div>
+
+        <div class="form-group {{#if error.email}}has-error{{/if}}">
+          <label for="inputEmail" class="control-label">Email address</label>
+          <input value="{{data.email}}" type="email" name="email" id="inputEmail" class="form-control has-error" placeholder="Email address">
+        </div>
+
+        <div class="form-group {{#if error.password}}has-error{{/if}}">
+          <label for="inputPassword" class="control-label">Password</label>
+          <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="remember" value="1"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary pull-right" type="submit">Sign up</button>
+      </form>
+      {{/if}}
+
+    </div> <!-- /container -->
+
+
+  </body>
+</html>
