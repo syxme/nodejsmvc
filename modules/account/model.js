@@ -13,7 +13,7 @@ Account = new Schema({
 	timelast:Date,
 	access:{
 		type:String,
-		default:"true"
+		default:"default"
 	}
 });
 
@@ -67,7 +67,6 @@ Account.statics.signup = function(req,res){
 					var acc = new Engine.models.account(data);
 					acc.save(function(err){
 						if (!err){
-							console.log(user);
 							req.session.info = {info:"Успешная регистрация"};
 							res.redirect('/signin/');
 						}else{
