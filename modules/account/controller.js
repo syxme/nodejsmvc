@@ -5,7 +5,7 @@ var exec = function(req, res) {
 	var segments = hls.segments(req);
 	
 	async.parallel({
-		account	:function(cb,results){modules['account'].render({path:segments,req:req},cb) },
+		account	:function(cb,results){modules['account'].render({path:segments,req:req,res:res},cb) },
 	},function(err,results){
 		res.send(results.account);
 	});		

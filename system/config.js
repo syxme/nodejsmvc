@@ -6,5 +6,9 @@ exports.config = config = {
 			model:"model.js",
 			controller:"controller.js"
 		}
+	},
+	errors:{
+		dbf:"Error DB, please contact admin service"
 	}
+
 }

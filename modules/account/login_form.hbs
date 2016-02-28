@@ -59,15 +59,36 @@
     {{#if signin}}
       <form class="form-signin" method="post" action="/api/account/auth">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        {{#if info}}
+          <div class="form-group has-success">
+            <label class="control-label">{{info}}</label><br>
+          </div>
+        {{/if}}
+
+        {{#if error.info}}
+          <div class="form-group has-error">
+            {{#each error.info}}
+              <label class="control-label">{{this}}</label><br>
+            {{/each}}
+          </div>
+        {{/if}}
+
+        <div class="form-group {{#if error.login}}has-error{{/if}}">
+          <label for="inputEmail" class="sr-only">Email or login</label>
+          <input value="{{data.login}}"  type="text" id="inputEmail" name="login" class="form-control" placeholder="Email address" required autofocus>
+        </div>
+
+        <div class="form-group {{#if error.password}}has-error{{/if}}">
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        </div>
+        
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
       {{else}}
@@ -102,11 +123,6 @@
           <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
         </div>
 
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="remember" value="1"> Remember me
-          </label>
-        </div>
         <button class="btn btn-lg btn-primary pull-right" type="submit">Sign up</button>
       </form>
       {{/if}}

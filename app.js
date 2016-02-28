@@ -16,7 +16,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
-app.use(session({ secret: "dfI3dD43220jhsdjjjsdkoen" }));
+app.use(session({ secret: "dfI3dD43220jhsdjjjsdkoen",saveUninitialized: true,resave: true}));
 
 mongoose.plugin(require('./system/shemaAccess'));
 // app.use(session(

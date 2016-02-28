@@ -5,7 +5,7 @@ var BasicModule = function(){
    
 }
 BasicModule.prototype.info = {
-	title:"Модуль управления меню",
+	title:"Пользователи",
 	link:"Пользователи",
 	url:"account"
 };
@@ -20,6 +20,7 @@ BasicModule.prototype.admin = function(req,callback){
 }
 
 BasicModule.prototype.render = function(params,callback){
+	
 	var ctx = {
 		title:"MVC Engine"
 	};
@@ -31,7 +32,17 @@ BasicModule.prototype.render = function(params,callback){
 		params.req.session.error = "";
 	}
 
+	if (params.req.session.info){
+		ctx = _.extend(ctx,params.req.session.info);
+		params.req.session.info = "";
+	}
+
 	ctx = Engine.view.account_login_form(ctx);
-	callback(null,ctx);
+
+	if (params.req.session.user){
+		params.res.redirect('/');
+	}else{
+		callback(null,ctx);
+	}
 }
 module.exports = {account:new BasicModule};
