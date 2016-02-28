@@ -14,9 +14,9 @@ Users = new Schema({
 });
 
 Users.statics.access = {
-  all: [],
-  user: [],
-  admin: ['signup', 'auth', 'edit', 'remove']
+  all: ['signup','auth'],
+  user: ['edit'],
+  admin: ['edit', 'remove']
 }
 
 Users.statics.signup = function(req,res){
@@ -27,26 +27,28 @@ Users.statics.signup = function(req,res){
 		error.name = true;
 		error.info.push('Слишком короткое имя.');
 	}
+
 	if (!data.email||data.email.length<5){
 		error.email = true;
 		error.info.push('Не верный email.');
 
 	}
+
 	if (!data.login||data.login.length<3){
 		error.login = true;
 		error.info.push('Слишком короткий логин.');
 
 	}
+
 	if (!data.password||data.password.length<6){
 		error.password = true
 		error.info.push('Слишком короткий пароль.');
 	}
-	if (error.info.length>0){
-		req.hbscontex = {error:error,data:data};
 
-		Engine.controllers.account.execute(req,res);
+	if (error.info.length>0){
+		req.session.error = {error:error,data:data};
+		res.redirect('back');
 	}else{
-		console.log(res);
 		res.send(data);
 	}
 };

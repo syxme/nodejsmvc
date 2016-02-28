@@ -19,15 +19,16 @@ BasicModule.prototype.admin = function(req,callback){
 
 }
 
-BasicModule.prototype.render = function(req,callback){
+BasicModule.prototype.render = function(params,callback){
 	var ctx = {
 		title:"MVC Engine"
 	};
 
-	ctx.signin = req.path.segments[0]=="signin"?true:false;
+	ctx.signin = params.path.segments[0]=="signin"?true:false;
 
-	if (req.req.hbscontex){
-		ctx = _.extend(ctx,req.req.hbscontex);
+	if (params.req.session.error){
+		ctx = _.extend(ctx,params.req.session.error);
+		params.req.session.error = "";
 	}
 
 	ctx = Engine.view.account_login_form(ctx);
