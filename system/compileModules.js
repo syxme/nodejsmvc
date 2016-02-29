@@ -1,19 +1,21 @@
-var Handlebars = new require("handlebars");
+var Handlebars = require("handlebars");
 var fs = require('fs')
 var tmp;
-var	controllers = {}, 
-	context = {},
-	models = {},
-	view = {};
+
+var	controllers = {};
+var	context 	= {};
+var	models 		= {};
+var	view 		= {};
 
 module.exports.ex = function(cb){
-	hls.walk("modules", function(err, file) {
+	lead.walk("modules", function(err, file) {
 		Object.keys(file).forEach(function (num) {
 			tmp = require("../"+file[num]);
-			if (hls.frs(hls.fn(file[num]))=="hbs"){
-				view[hls.hbsName(file[num])] = Handlebars.compile(fs.readFileSync(file[num], 'utf8'));					  
+			if (lead.frs(lead.fn(file[num]))=="hbs"){
+				view[lead.hbsName(file[num])] = fs.readFileSync(file[num], 'utf8');
+			    Handlebars.partials[lead.hbsName(file[num])] = Handlebars.compile(view[lead.hbsName(file[num])]);			  
 			}else{
-				switch (hls.fn(file[num])){
+				switch (lead.fn(file[num])){
 					case config.compiler.scanOptions.index:
 						context[Object.keys(tmp)] = tmp[Object.keys(tmp)];
 						break;
@@ -28,6 +30,7 @@ module.exports.ex = function(cb){
 				}
 			}
 		});
+		
 		var engine = {
 			controllers	:controllers,
 			context		:context,

@@ -14,7 +14,7 @@ BasicModule.prototype.admin = function(req,callback){
 	var ctx = {
 		title:"Логин"
 	};
-	ctx = Engine.view.menu_edit(ctx);
+	ctx = lead.view("menu_edit")(ctx);
 	callback(null,ctx);
 
 }
@@ -37,7 +37,7 @@ BasicModule.prototype.render = function(params,callback){
 		params.req.session.info = "";
 	}
 
-	ctx = Engine.view.account_login_form(ctx);
+	ctx = lead.view("account_login_form")(ctx);
 
 	if (params.req.session.user){
 		params.res.redirect('/');

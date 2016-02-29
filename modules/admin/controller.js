@@ -2,9 +2,9 @@ var async = require("async");
 
 var exec = function(req, res) {
 	var ctx = {};
-	var segments = hls.segments(req);
+	var segments = lead.segments(req);
 	if (req.session.user){
-		if (!req.session.user.access=="root"){
+		if (req.session.user.access!="root"){
 			return res.status(401).send("no access");
 		}
 	}else{
@@ -14,7 +14,7 @@ var exec = function(req, res) {
 	async.parallel({
 		context	:function(cb,results){modules['admin'].initial(segments,cb) },
 	},function(err,results){
-		res.send(Engine.view.admin_layout(results.context));
+		res.send(lead.view("admin_layout")(results.context));
 	});		
 }
 

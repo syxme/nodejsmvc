@@ -12,13 +12,17 @@ BasicModule.prototype.admin = function(req,callback){
 	var ctx = {
 		title:"Меню"
 	};
-	ctx = Engine.view.menu_edit(ctx);
+	ctx = lead.view('menu_edit')(ctx);
 	callback(null,ctx);
 
 }
 
-BasicModule.prototype.render = function(req,callback){
+BasicModule.prototype.render = function(req,res,callback){
 	var ctx = {};
+	if (req.session.user){
+		ctx.user = req.session.user;
+	}
+	
 	// async.auto({
 	// 	users:function(cb,results){ models.User.find({}).exec(cb)}
 	// },function(err,results){
@@ -28,7 +32,7 @@ BasicModule.prototype.render = function(req,callback){
 	// 	ctx = Engine.view.menu_index(ctx);
 	// 	callback(err,ctx);
 	// });
-	ctx = Engine.view.menu_index(ctx);
+	ctx = lead.view('menu_index')(ctx);
 	callback(null,ctx);
 }
 module.exports = {menu:new BasicModule};

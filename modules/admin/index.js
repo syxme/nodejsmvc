@@ -15,7 +15,7 @@ BasicModule.prototype.admin = function(req,callback){
 	var ctx = {
 		title:"Меню"
 	};
-	ctx = Engine.view.menu_edit(ctx);
+	ctx = lead.view('menu_edit')(ctx);
 	callback(null,ctx);
 
 }

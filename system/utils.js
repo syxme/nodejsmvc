@@ -1,5 +1,6 @@
 var fs = require('fs');
 var _ = require("lodash");
+var Handlebars = require("handlebars");
 
 var walk = function(dir, done) { 
   var results = [];
@@ -23,6 +24,10 @@ var walk = function(dir, done) {
     });
   });
 };
+
+var view = function (name) {
+  return Handlebars.compile(Engine.view[name]);
+}
 
 var merge = function (data) {
   var main = (_.pick(data, 'context')).context;
@@ -54,11 +59,12 @@ var frs = function(x){
 }
 var Key = function (e){return Object.keys(e)};
 
-module.exports = hls = {
+module.exports = lead = {
   segments:segments,
   hbsName:hbsName,
   merge:merge,
   walk:walk,
   fn:fname,
-  frs:frs
+  frs:frs,
+  view:view
 };

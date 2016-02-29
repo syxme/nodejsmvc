@@ -1,19 +1,15 @@
-var async = require("async");
+var async = require("async"),
+	Handlebars	= require("handlebars");
 
 var exec = function(req, res) {
 	var ctx = {};
-	var segments = hls.segments(req);
-	//console.log(Engine);
+	req.segments =  lead.segments(req);
 	async.parallel({
-		context	:function(cb,results){modules['index'].render(segments,cb) },
-		header	:function(cb,results){cb(null,Engine.view.index_header(ctx))},
-		footer	:function(cb,results){cb(null,Engine.view.index_footer(ctx))},
-		scripts	:function(cb,results){cb(null,Engine.view.index_scripts(ctx))},
-		menu	:function(cb,results){modules['menu'].render({},cb) }
+		context	:function(cb,results){modules['index'].render(req,res,cb) },
+		menu	:function(cb,results){modules['menu'].render(req,res,cb) }
 	},function(err,results){
-		ctx = hls.merge(results);
-		// console.log(ctx);
-		res.send(Engine.view.index_layout(ctx));
+		ctx = lead.merge(results);
+		res.send(lead.view('index_layout')(ctx));
 	});		
 }
 

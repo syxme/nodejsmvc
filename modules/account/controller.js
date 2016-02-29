@@ -2,7 +2,7 @@ var async = require("async");
 
 var exec = function(req, res) {
 	var ctx = {};
-	var segments = hls.segments(req);
+	var segments = lead.segments(req);
 	
 	async.parallel({
 		account	:function(cb,results){modules['account'].render({path:segments,req:req,res:res},cb) },
