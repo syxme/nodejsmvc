@@ -1,13 +1,12 @@
 var express	= require('express'),
 	app 	= express(),
 	server	= require('http').createServer(app),
-	redis	= require('redis'),
+	//redis	= require('redis'),
 	mongoose = require("mongoose"),
 	bodyParser	= require('body-parser'),
 	cookieParser= require('cookie-parser'),
 	session		= require('express-session'),
-	Handlebars	= require("handlebars"),
-	hbs         = require('consolidate').handlebars;
+	Handlebars	= require("handlebars");
 
 	//client 		= redis.createClient(),
 	//redisStore	= require('connect-redis')(session);
@@ -18,10 +17,6 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
 app.use(session({ secret: "dfI3dD43220jhsdjjjsdkoen",saveUninitialized: true,resave: true}));
-
-app.engine('hbs', hbs);
-app.set('views', './modules');
-app.set('view engine', 'hbs');
 
 
 mongoose.plugin(require('./system/shemaAccess'));

@@ -8,9 +8,11 @@ const api = "/api/";
 initApi = function(app) {
 
 	compile.ex(function(e){
+
 		module.exports = Engine = e;
 		module.exports = modules = e.context;
 		module.exports = models = e.models;
+
 		Object.keys(e.controllers).forEach(function (i) {
 
 			Object.keys(e.controllers[i].routes).forEach(function(route){
@@ -26,5 +28,5 @@ initApi = function(app) {
 	});
 };
 
-// processRequest
+
 module.exports = initApi;

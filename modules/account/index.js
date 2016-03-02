@@ -6,7 +6,7 @@ var BasicModule = function(){
 }
 BasicModule.prototype.info = {
 	title:"Пользователи",
-	link:"Пользователи",
+	link:"Список пользователей",
 	url:"account"
 };
 
@@ -14,8 +14,18 @@ BasicModule.prototype.admin = function(req,callback){
 	var ctx = {
 		title:"Логин"
 	};
-	ctx = lead.view("menu_edit")(ctx);
-	callback(null,ctx);
+	async.auto({
+		account:function(cb,results){ Engine.models.account.find({}).exec(cb)}
+	},function(err,results){
+		ctx  = {
+			accounts:results.account
+		}
+		ctx = lead.view("account_edit")(ctx);
+		callback(null,ctx);
+	});
+
+
+	
 
 }
 
