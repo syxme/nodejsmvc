@@ -45,14 +45,6 @@ var segments = function(req){
   }
 }
 
-var setAttr = function(attr){
-  if (attr){
-    return attr;
-  }else{
-    return {};
-  }
-}
-
 var fname = function(x){
   return x.substring(x.lastIndexOf('/')+1,x.length);
 }
@@ -76,6 +68,5 @@ module.exports = lead = {
   walk:walk,
   fn:fname,
   frs:frs,
-  view:view,
-  setAttr:setAttr
+  view:view
 };
