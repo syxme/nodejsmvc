@@ -25,9 +25,11 @@ var walk = function(dir, done) {
   });
 };
 
+
 var view = function (name) {
   return Handlebars.compile(Engine.view[name]);
 }
+
 
 var merge = function (data) {
   var main = (_.pick(data, 'context')).context;
@@ -35,6 +37,7 @@ var merge = function (data) {
   _.extend(main, sub);
   return main;
 }
+
 var segments = function(req){
   return {
     segments:_.without(req.path.split("/"), ""),
@@ -42,6 +45,13 @@ var segments = function(req){
   }
 }
 
+var setAttr = function(attr){
+  if (attr){
+    return attr;
+  }else{
+    return {};
+  }
+}
 
 var fname = function(x){
   return x.substring(x.lastIndexOf('/')+1,x.length);
@@ -66,5 +76,6 @@ module.exports = lead = {
   walk:walk,
   fn:fname,
   frs:frs,
-  view:view
+  view:view,
+  setAttr:setAttr
 };

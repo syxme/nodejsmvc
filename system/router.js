@@ -10,8 +10,8 @@ initApi = function(app) {
 	compile.ex(function(e){
 
 		module.exports = Engine = e;
-		module.exports = modules = e.context;
 		module.exports = models = e.models;
+		module.exports = modules= e.context;
 
 		Object.keys(e.controllers).forEach(function (i) {
 
@@ -25,6 +25,12 @@ initApi = function(app) {
 		 		models[md].processRequest(req,res);
 		 	});
 		});
+		//404
+
+		app.get('*', function(req, res){
+  			res.status(404).send('what???');
+		});
+
 	});
 };
 

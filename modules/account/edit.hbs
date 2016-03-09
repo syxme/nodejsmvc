@@ -1,3 +1,48 @@
+<h2 class="sub-header">Editor</h2>
+<div class="row">
+	<div class="col-md-4">
+		<div class="form-group">
+				<label for="Login">Login</label>
+				<input type="text" class="form-control edit-login" id="Login" placeholder="Login">
+		</div>
+		<div class="form-group">
+			<label for="Email">Email</label>
+			<input type="text" class="form-control edit-email" id="Email" placeholder="Email">
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="form-group">
+				<label for="Name">Name</label>
+				<input type="text" class="form-control edit-name" id="Name" placeholder="Name">
+		</div>
+		<div class="form-group">
+			<label for="Status">Status</label>
+			<input type="text" class="form-control edit-status" id="Status" placeholder="Status">
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="form-group">
+				<label for="Type">Type</label>
+				<input type="text" class="form-control edit-type" id="Type" placeholder="Type">
+		</div>
+		<div class="form-group">
+			<label for="Status">Access</label>
+			<select class="form-control edit-access">
+				<option value="root">Root</option>
+				<option value="admin">Admin</option>
+				<option value="user">User</option>
+			</select>
+		</div>
+		<div class="btn-group pull-right" aria-label="...">
+			<button type="button" class="btn btn-success">Обновить</button>
+			<button type="button" class="btn btn-success">Добавить</button>
+		</div>
+	</div>
+</div>
+<h2 class="sub-header">Список</h2>
+
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
@@ -8,6 +53,7 @@
 			<th>Status</th> 
 			<th>Type</th> 
 			<th>Access</th> 
+			<th width="105px">$</th> 
 		</tr>
 	</thead>
 	<tbody>
@@ -20,6 +66,10 @@
 			<th>{{status}}</th> 
 			<th>{{type}}</th> 
 			<th>{{access}}</th> 
+			<th>
+				<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+			</th> 
 		</tr>
 	{{/each}}
 	</tbody>

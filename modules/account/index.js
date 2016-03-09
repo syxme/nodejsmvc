@@ -6,8 +6,10 @@ var BasicModule = function(){
 }
 BasicModule.prototype.info = {
 	title:"Пользователи",
-	link:"Список пользователей",
-	url:"account"
+	link:"Пользователи",
+	url:"account",
+	priority:1
+
 };
 
 BasicModule.prototype.admin = function(req,callback){

@@ -2,6 +2,7 @@ var async = require("async"),
 	Handlebars	= require("handlebars");
 
 var exec = function(req, res) {
+	console.time('test');
 	var ctx = {};
 	req.segments =  lead.segments(req);
 	async.parallel({
@@ -9,6 +10,7 @@ var exec = function(req, res) {
 		menu	:function(cb,results){modules['menu'].render(req,res,cb) }
 	},function(err,results){
 		ctx = lead.merge(results);
+		console.timeEnd('test');
 		res.send(lead.view('index_layout')(ctx));
 	});		
 }

@@ -9,6 +9,9 @@ exports.config = config = {
 	},
 	errors:{
 		dbf:"Error DB, please contact admin service"
+	},
+	cache:{
+		
 	}
 
 }

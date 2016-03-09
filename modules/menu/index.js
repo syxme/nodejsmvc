@@ -1,11 +1,11 @@
 var async = require("async");
-var BasicModule = function(){
-   
-}
+var BasicModule = function(){}
 BasicModule.prototype.info = {
 	title:"Модуль управления меню",
 	link:"Заглавное меню",
-	url:"menu"
+	url:"menu",
+	priority:2
+
 };
 
 BasicModule.prototype.admin = function(req,callback){
@@ -22,7 +22,6 @@ BasicModule.prototype.render = function(req,res,callback){
 	if (req.session.user){
 		ctx.user = req.session.user;
 	}
-	
 	// async.auto({
 	// 	users:function(cb,results){ models.User.find({}).exec(cb)}
 	// },function(err,results){
@@ -32,6 +31,8 @@ BasicModule.prototype.render = function(req,res,callback){
 	// 	ctx = Engine.view.menu_index(ctx);
 	// 	callback(err,ctx);
 	// });
+	console.log(ctx);
+
 	ctx = lead.view('menu_index')(ctx);
 	callback(null,ctx);
 }
