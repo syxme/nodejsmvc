@@ -1,1 +1,54 @@
-FFFF
+<h2 class="sub-header">Menu Editor</h2>
+<div class="row">
+	<div class="col-md-4">
+		<div class="form-group">
+			<label for="Login">Название ссылки</label>
+			<input type="text" class="form-control edit-name" id="Login" placeholder="/downloadls/">
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="form-group">
+			<label for="Name">Предок</label>
+			<select class="form-control edit-parent">
+				<option value="">Корень(ROOT)</option>
+				{{#each link}}
+					<option value="{{_id}}">{{name}}</option>
+				{{/each}}
+			</select>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="form-group">
+			<label for="Email">URL</label>
+			<input type="text" class="form-control edit-link" id="Email" placeholder="Email">
+		</div>
+
+		<div class="btn-group pull-right" aria-label="...">
+			<button type="button" class="btn btn-success ">Обновить</button>
+			<button type="button" class="btn btn-success addNewMenu">Добавить</button>
+		</div>
+	</div>
+</div>
+<h2 class="sub-header">Список</h2>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+    $(".addNewMenu").click(function(){
+    	var name = $(".edit-name").val();
+    	var parent = $(".edit-parent").val();
+    	var link = $(".edit-link").val();
+    	var send = {
+    		namex:name,
+    		parent:parent,
+    		link:link
+    	}
+    	if (name!=""&&link!=""){
+    		$.post("/api/menu/create",send,function(res){
+    			console.log(res);
+    		});
+    	}
+    })
+});
+</script>

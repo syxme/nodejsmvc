@@ -16,13 +16,17 @@ module.exports = function(schema, options) {
   schema.statics.processRequest = function(req, res) {
     var args, func, method, segments, _ref;
     method = req.method;
-
+    console.log(req.body.namex);
+    var name = req.body.namex;
     segments = _.without(req.path.split('/'), "");
     func = (_ref = segments[2]) != null ? _ref : false;
 
     if (!(func || typeof this.access !== 'object')) {
       res.send("unknown method", 404);
     } else {
+      if (req.session.user){
+        req.user = req.session.user;
+      }
       if (hasAccess(func, req.user, this.access)) {
         if (segments.length > 4) {
           args = segments.slice(4);

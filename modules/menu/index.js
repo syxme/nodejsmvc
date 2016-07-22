@@ -12,6 +12,11 @@ BasicModule.prototype.admin = function(req,callback){
 	var ctx = {
 		title:"Меню"
 	};
+	
+	models.Menu.getMenu(function(err,resp){
+		console.log(resp);
+	})
+
 	ctx = lead.view('menu_edit')(ctx);
 	callback(null,ctx);
 
@@ -31,7 +36,7 @@ BasicModule.prototype.render = function(req,res,callback){
 	// 	ctx = Engine.view.menu_index(ctx);
 	// 	callback(err,ctx);
 	// });
-	console.log(ctx);
+	
 
 	ctx = lead.view('menu_index')(ctx);
 	callback(null,ctx);

@@ -30,16 +30,14 @@ BasicModule.prototype.initial = function(req,callback){
 		authenticated:false,
 		menu:[]
 	};
-	console.time('GenerateMenu');
+
 	Object.keys(Engine.context).forEach(function (n) {
 		if (Engine.context[n].admin){
 			ctx.menu.push(mname == Engine.context[n].info.url?_.extend({active:true},Engine.context[n].info):Engine.context[n].info);
 		}
 	});
-
-	ctx.menu = _.sortBy(ctx.menu,['priority']);
-	console.timeEnd('GenerateMenu');
 	
+	ctx.menu = _.sortBy(ctx.menu,['priority']);
 	mname = mname==''?'admin':mname;
 
 	if (mname){

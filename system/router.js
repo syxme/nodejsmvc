@@ -1,6 +1,6 @@
 var	compile = new require("./compileModules"),
 helpers = require("./utils"),
-models	= require("./models"),
+model	= require("./models"),
 fs 		= require('fs');
 
 const api = "/api/";
@@ -14,7 +14,7 @@ initApi = function(app) {
 		module.exports = Engine = e;
 		module.exports = models = e.models;
 		module.exports = modules= e.context;
-		
+
 		Object.keys(e.controllers).forEach(function (i) {
 
 			Object.keys(e.controllers[i].routes).forEach(function(route){
@@ -30,7 +30,8 @@ initApi = function(app) {
 		});
 
 		Object.keys(models).forEach(function (md) {
-			app.all(api+md+'/*',function(req,res){
+			console.log(api+md+'/*');
+			app.post(api+md+'/*',function(req,res){
 				models[md].processRequest(req,res);
 			});
 		});

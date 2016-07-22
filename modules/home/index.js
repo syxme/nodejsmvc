@@ -3,18 +3,18 @@ var async = require("async");
 
 var BasicModule = function(){}
 BasicModule.prototype.info = {
-	title:"Модуль управления меню",
-	link:"Заглавное меню",
-	url:"menu",
+	title:"Модуль Домашняя хрен",
+	link:"Траратота",
+	url:"home",
 	priority:2
 
 };
 
 BasicModule.prototype.admin = function(req,callback){
 	var ctx = {
-		title:"Меню"
+		title:"Домашняя хрень"
 	};
-	ctx = lead.view('menu_edit')(ctx);
+	ctx = lead.view('home_megan')(ctx);
 	callback(null,ctx);
 
 }

@@ -8,7 +8,11 @@ var exec = function(req, res) {
 		context	:function(cb,results){modules['admin'].initial(segments,cb) },
 	},function(err,results){
 		console.timeEnd('admin');
-		res.send(lead.view("admin_layout")(results.context));
+		if (err){
+			res.redirect("/admin/");
+		}else{
+			res.send(lead.view("admin_layout")(results.context));
+		}
 	});		
 }
 
