@@ -4,14 +4,6 @@ var exec = function(req, res) {
 	console.time('admin');
 	var ctx = {};
 	var segments = lead.segments(req);
-	// if (req.session.user){
-	// 	if (req.session.user.access!="root"){
-	// 		return res.status(401).send("no access");
-	// 	}
-	// }else{
-	// 	return res.status(401).send("no access");
-	// }
-
 	async.parallel({
 		context	:function(cb,results){modules['admin'].initial(segments,cb) },
 	},function(err,results){
@@ -22,4 +14,4 @@ var exec = function(req, res) {
 
 var routes = ['/admin/','/admin/:module'];
 
-exports.index = {routes:routes,execute:exec};
+exports.admin = {routes:routes,execute:exec};

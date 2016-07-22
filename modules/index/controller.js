@@ -4,10 +4,19 @@ var async = require("async"),
 var exec = function(req, res) {
 	console.time('test');
 	var ctx = {};
+	var module;
 	req.segments =  lead.segments(req);
+
+	if (req.module){
+		module = function(cb,results){modules[req.module].render(req,res,cb)};
+	}else{
+		module = function(cb,results){cb(null,null)};
+	}
+	
 	async.parallel({
 		context	:function(cb,results){modules['index'].render(req,res,cb) },
-		menu	:function(cb,results){modules['menu'].render(req,res,cb) }
+		menu	:function(cb,results){modules['menu'].render(req,res,cb) },
+		module	:module 
 	},function(err,results){
 		ctx = lead.merge(results);
 		console.timeEnd('test');
@@ -17,4 +26,4 @@ var exec = function(req, res) {
 
 var routes = ['/'];
 
-exports.admin = {routes:routes,execute:exec};
+exports.index = {routes:routes,execute:exec};
