@@ -16,7 +16,7 @@ BasicModule.prototype.admin = function(req,callback){
 	var ctx = {
 		title:"Меню"
 	};
-	ctx = lead.view('menu_edit')(ctx);
+	ctx = lead.view('home_megan')(ctx);
 	callback(null,ctx);
 
 }

@@ -1,5 +1,10 @@
 var async = require("async");
-var BasicModule = function(){}
+var _ = require("lodash");
+
+
+var BasicModule = function(){
+	
+}
 BasicModule.prototype.info = {
 	title:"Модуль управления меню",
 	link:"Заглавное меню",
@@ -12,13 +17,16 @@ BasicModule.prototype.admin = function(req,callback){
 	var ctx = {
 		title:"Меню"
 	};
-	
-	models.Menu.getMenu(function(err,resp){
-		console.log(resp);
-	})
 
-	ctx = lead.view('menu_edit')(ctx);
-	callback(null,ctx);
+	async.auto({
+		menu:function(cb,results){ models.Menu.getMenu(cb)}
+	},function(err,results){
+		ctx = _.assign(ctx,results.menu);
+		ctx = _.assign(ctx,results.list);
+		ctx = lead.view('menu_edit')(ctx);
+		callback(err,ctx);
+	});
+
 
 }
 

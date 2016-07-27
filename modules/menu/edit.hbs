@@ -11,9 +11,8 @@
 		<div class="form-group">
 			<label for="Name">Предок</label>
 			<select class="form-control edit-parent">
-				<option value="">Корень(ROOT)</option>
-				{{#each link}}
-					<option value="{{_id}}">{{name}}</option>
+				{{#each list}}
+				<option value="{{_id}}">{{name}}</option>
 				{{/each}}
 			</select>
 		</div>
@@ -33,22 +32,87 @@
 </div>
 <h2 class="sub-header">Список</h2>
 
+<div class="row">
+	<ul class="menu"> 
+		{{> menu_item}}
+	</ul>
+</div>
+
+
+<style type="text/css">
+	.menu {
+		display: block;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		cursor: pointer;
+
+	}
+	.menu > li {
+		float: left;
+		display: block;
+		height: 35px;
+		line-height: 35px;
+		width: 100px;
+		text-align: center;
+		background-color: #4cabd8;
+		position: relative;
+	}
+	.menu > li:hover {
+		background-color: #3f3f40;
+		color: #fb7f21;
+	}
+	.submenu {
+		display: none;
+		position: absolute;
+		background-color: white;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		cursor: pointer;
+	}
+	.submenu > li {
+		display: block;
+		height: 35px;
+		line-height: 35px;
+		width: 100px;
+		color: white;
+		background-color: #484848;
+		text-decoration: none;
+		list-style: none;
+		position: relative;
+	}
+	.submenu > li:hover {
+		background-color: #3f3f40;
+		color: #fb7f21;
+	}
+	.menu > li:hover > ul.submenu {
+		display: block;
+	}
+	.submenu > li:hover > ul.submenu {
+		display: block;
+		left: 100px;
+		top: 0px;
+	}
+</style>
+
+
 <script type="text/javascript">
-$( document ).ready(function() {
-    $(".addNewMenu").click(function(){
-    	var name = $(".edit-name").val();
-    	var parent = $(".edit-parent").val();
-    	var link = $(".edit-link").val();
-    	var send = {
-    		namex:name,
-    		parent:parent,
-    		link:link
-    	}
-    	if (name!=""&&link!=""){
-    		$.post("/api/menu/create",send,function(res){
-    			console.log(res);
-    		});
-    	}
-    })
-});
+	$( document ).ready(function() {
+		$(".addNewMenu").click(function(){
+			var name = $(".edit-name").val();
+			var parent = $(".edit-parent").val();
+			var link = $(".edit-link").val();
+			var send = {
+				namex:name,
+				parent:parent,
+				link:link
+			}
+			if (name!=""&&link!=""){
+				$.post("/api/menu/createMenu",send,function(res){
+					console.log(res);
+				});
+			}
+		})
+	});
 </script>

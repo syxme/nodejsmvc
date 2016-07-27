@@ -6,7 +6,7 @@ BasicModule.prototype.info = {
 	title:"Модуль Домашняя хрен",
 	link:"Траратота",
 	url:"home",
-	priority:2
+	priority:3
 
 };
 

@@ -1,0 +1,4 @@
+
+{{#each menu}}
+    <li data-id="{{_id}}" class="menu-item">{{name}}{{#if menu}}<ul class="submenu">{{> menu_item}}</ul>{{/if}}</li>
+{{/each}}
