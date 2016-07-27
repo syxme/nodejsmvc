@@ -37,64 +37,37 @@
 		{{> menu_item}}
 	</ul>
 </div>
+<!-- Button trigger modal -->
 
 
-<style type="text/css">
-	.menu {
-		display: block;
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		cursor: pointer;
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Recipient:</label>
+						<input type="text" class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+						<label for="message-text" class="control-label">Message:</label>
+						<input type="text" class="form-control" id="recipient-name">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-	}
-	.menu > li {
-		float: left;
-		display: block;
-		height: 35px;
-		line-height: 35px;
-		width: 100px;
-		text-align: center;
-		background-color: #4cabd8;
-		position: relative;
-	}
-	.menu > li:hover {
-		background-color: #3f3f40;
-		color: #fb7f21;
-	}
-	.submenu {
-		display: none;
-		position: absolute;
-		background-color: white;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		cursor: pointer;
-	}
-	.submenu > li {
-		display: block;
-		height: 35px;
-		line-height: 35px;
-		width: 100px;
-		color: white;
-		background-color: #484848;
-		text-decoration: none;
-		list-style: none;
-		position: relative;
-	}
-	.submenu > li:hover {
-		background-color: #3f3f40;
-		color: #fb7f21;
-	}
-	.menu > li:hover > ul.submenu {
-		display: block;
-	}
-	.submenu > li:hover > ul.submenu {
-		display: block;
-		left: 100px;
-		top: 0px;
-	}
-</style>
+
 
 
 <script type="text/javascript">

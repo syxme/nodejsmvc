@@ -1,23 +1,21 @@
 $( document ).ready(function() {
-
-  $('.download').click(function(){
-  	window.location.href = '/download/'+$('#filename').val();
-  });
-  $('.add').click(function(){
-
-    $.post('/api/add',{mail:$('#mail').val(),phone:$('#phone').val()},function(e){
-      console.log(e);
-      $(".alert").css("display","block");
-      setTimeout('$(".alert").css("display","none");', 1000);
-    });
-  });
-  $('.recover').click(function(){
-
-    $.post('/api/recover',{mail:$('#mailre').val()},function(e){
-      $(".alert").css("display","block");
-      setTimeout('$(".alert").css("display","none");', 1000);
-    });
-  });
-
  
+
+
+// relatedTarget
+// delegateTarget
+  $(".menu-item").onclick(function(){
+    
+  });
+ $('#myModal').on('show.bs.modal', function (event) {
+
+  var button = $(event.relatedTarget).eq(0); 
+  console.log(button);
+  console.log("FAF");
+  var id = button.data('id') 
+
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + id)
+  modal.find('.modal-body input').val(id)
+})
 });
