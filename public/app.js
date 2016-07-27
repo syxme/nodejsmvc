@@ -1,21 +1,20 @@
 $( document ).ready(function() {
- 
 
 
-// relatedTarget
-// delegateTarget
-  $(".menu-item").onclick(function(){
-    
-  });
- $('#myModal').on('show.bs.modal', function (event) {
+	$(".menu-item").click(function(e){
+		var target = $(e.currentTarget);
+		
+		var id = target.data('id');
+		var name = target.data('name');
+		var link = target.data('link');
 
-  var button = $(event.relatedTarget).eq(0); 
-  console.log(button);
-  console.log("FAF");
-  var id = button.data('id') 
+		
+		var modal = $(".modal");
+		modal.find('.modal-title').text('New message to ' + name)
+		modal.find('.modal-body input').val(id);
 
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + id)
-  modal.find('.modal-body input').val(id)
-})
+		$('#myModal').modal('show');
+		e.stopPropagation();
+	});
+
 });

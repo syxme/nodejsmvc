@@ -1,4 +1,4 @@
 
 {{#each menu}}
-    <li data-id="{{_id}}" data-toggle="modal" data-target="#myModal" class="menu-item">{{name}}{{#if menu}}<ul class="submenu">{{> menu_item}}</ul>{{/if}}</li>
+    <li data-id="{{_id}}" data-name="{{name}}" data-link="{{link}}"  class="menu-item">{{name}}{{#if menu}}<ul class="submenu">{{> menu_item}}</ul>{{/if}}</li>
 {{/each}}
