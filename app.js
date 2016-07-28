@@ -32,7 +32,7 @@ mongoose.plugin(require('./system/shemaAccess'));
 var config = require("./system/config");
 var routers = require("./system/router")(app);
 
-var port = process.env.OPENSHIFT_NODEJS_PORT || 2517 ;
+var port = process.env.OPENSHIFT_NODEJS_PORT || 2518 ;
 var ip = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 //console.log(global);
 

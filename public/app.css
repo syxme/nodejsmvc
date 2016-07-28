@@ -9,12 +9,19 @@
 .menu > li {
     float: left;
     display: block;
+    border-right: 1px solid #4a4949;
     height: 35px;
     line-height: 35px;
     width: 100px;
     text-align: center;
     background-color: #4cabd8;
     position: relative;
+}
+.menu > li:first-child {
+   border-left:none;
+}
+.menu > li:last-child {
+   border-right:none;
 }
 .menu > li:hover {
     background-color: #3f3f40;

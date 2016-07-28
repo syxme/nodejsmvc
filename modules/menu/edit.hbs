@@ -1,41 +1,11 @@
 <h2 class="sub-header">Menu Editor</h2>
-<div class="row">
-	<div class="col-md-4">
-		<div class="form-group">
-			<label for="Login">Название ссылки</label>
-			<input type="text" class="form-control edit-name" id="Login" placeholder="/downloadls/">
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<div class="form-group">
-			<label for="Name">Предок</label>
-			<select class="form-control edit-parent">
-				{{#each list}}
-				<option value="{{_id}}">{{name}}</option>
-				{{/each}}
-			</select>
-		</div>
-	</div>
-
-	<div class="col-md-4">
-		<div class="form-group">
-			<label for="Email">URL</label>
-			<input type="text" class="form-control edit-link" id="Email" placeholder="Email">
-		</div>
-
-		<div class="btn-group pull-right" aria-label="...">
-			<button type="button" class="btn btn-success ">Обновить</button>
-			<button type="button" class="btn btn-success addNewMenu">Добавить</button>
-		</div>
-	</div>
-</div>
-<h2 class="sub-header">Список</h2>
 
 <div class="row">
 	<ul class="menu LoaderMenu"> 
 		{{> menu_item}}
 	</ul>
+	<button type="button" style="margin-left: 15px;" class="btn btn-default add-menu-item-root" data-toggle="tooltip" data-placement="right" title="Добавить пункт меню в корневом уровне.">Добавить элемент</button>
+
 </div>
 <!-- Button trigger modal -->
 
@@ -45,23 +15,26 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">Modal title</h4>
+				<h4 class="modal-title">Добавление элемента</h4>
 			</div>
 			<div class="modal-body">
 				<form>
+				
+					<input type="hidden" class="form-control edit-parent" value="">
+
 					<div class="form-group">
-						<label for="recipient-name" class="control-label">Recipient:</label>
-						<input type="text" class="form-control" id="recipient-name">
+						<label for="recipient-name" class="control-label">Название ссылки:</label>
+						<input type="text" class="form-control edit-name" id="recipient-name">
 					</div>
 					<div class="form-group">
-						<label for="message-text" class="control-label">Message:</label>
-						<input type="text" class="form-control" id="recipient-name">
+						<label for="message-text" class="control-label">URL:</label>
+						<input type="text" class="form-control edit-link" id="recipient-name">
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-primary addNewMenu">Save changes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -71,19 +44,53 @@
 
 
 <script type="text/javascript">
+
+
+
 	$( document ).ready(function() {
+
+
+		$(".menu-item").click(function(e){
+			var target = $(e.currentTarget);
+
+			var id = target.data('id');
+			var name = target.data('name');
+			// var link = target.data('link');
+
+			$(".edit-parent").val(id);
+
+			var modal = $(".modal");
+			modal.find('.modal-title').text('Добавление подменю ' + name)
+
+			$('#myModal').modal('show');
+			e.stopPropagation();
+		});
+
+
+		$(".add-menu-item-root").click(function(e){
+			var modal = $(".modal");
+			modal.find('.modal-title').text('Добавление меню');
+			$('#myModal').modal('show');
+			e.stopPropagation();
+		});
+
+
+
+
+
 		$(".addNewMenu").click(function(){
 			var name = $(".edit-name").val();
 			var parent = $(".edit-parent").val();
 			var link = $(".edit-link").val();
 			var send = {
-				namex:name,
+				name:name,
 				parent:parent,
 				link:link
 			}
 			if (name!=""&&link!=""){
 				$.post("/api/menu/createMenu",send,function(res){
 					console.log(res);
+					$('#myModal').modal('hide')
 				});
 			}
 		})

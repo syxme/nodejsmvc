@@ -17,21 +17,34 @@ Menu.statics.access = {
 }
 
 function makeTree(arr,item){
-	if(!item) item = arr[0];
+	if(!item){
+		var menu = [],tmp;
+		for (i in arr) {
+			if (typeof arr[i].parent =="undefined"){
+				tmp = arr[i];
+				tmp.menu = arr.reduce(function(result,subItem){
+					if(tmp._id === subItem.parent) result.push(makeTree(arr,subItem));
+					return result;
+				},[]);
+				menu.push(tmp);
+			}
+		}
+		return menu;
+	}else{
 		item.menu = arr.reduce(function(result,subItem){
-			if(item._id === subItem.parent) result.push(makeTree(arr,subItem));
+			if(item._id === subItem.parent)result.push(makeTree(arr,subItem));
 			return result;
 		},[]);
 		return item;
+	}	
 }
 
 Menu.statics.getMenu = function(cb){
-	
 	this.find({},function(err,items){	
 		var data = {
 			list:items,
 		};
-		data.menu = makeTree(JSON.parse(JSON.stringify(items))).menu;
+		data.menu = makeTree(JSON.parse(JSON.stringify(items)));
 		cb(err,data);
 	});
 };
@@ -39,11 +52,16 @@ Menu.statics.getMenu = function(cb){
 
 Menu.statics.createMenu = function(req,res){
 	var post =req.body;
+	if (!post.parent){
+		post.parent = ObjectId("root");
+	}
+
 	var data = {
-		name: post.namex,
+		name: post.name,
 		parent:post.parent,
 		link:post.link
 	};
+	console.log(data);
 	this.create(data,function(err,response){
 		res.send(response);
 	});
