@@ -39,19 +39,18 @@ function makeTree(arr,item){
 }
 
 Menu.statics.getMenu = function(cb){
-	if (items){
-		this.find({},function(err,items){
-
+	this.find({},function(err,items){
+		if (items){
 			var data = {
 				list:items,
 			};
-
 			data.menu = makeTree(JSON.parse(JSON.stringify(items)));
 			cb(err,data);
-		});
-	}else{
-		cb(err,{list:{},menu:{}});
-	}	
+		}else{
+			cb(err,{list:{},menu:{}});
+		}	
+	});
+
 };
 
 
