@@ -5,7 +5,6 @@ var ObjectId = Schema.Types.ObjectId;
 Menu = new Schema({
 	name	:String,
 	order	:{type: Number, default: 0},
-	//children:[{type: ObjectId, ref: 'menu'}], //через них будем делать 
 	parent	:{type: ObjectId, ref: 'Menu'},   
 	link	:{type: String, default: '/' }
 });
@@ -40,13 +39,19 @@ function makeTree(arr,item){
 }
 
 Menu.statics.getMenu = function(cb){
-	this.find({},function(err,items){	
-		var data = {
-			list:items,
-		};
-		data.menu = makeTree(JSON.parse(JSON.stringify(items)));
-		cb(err,data);
-	});
+	if (items){
+		this.find({},function(err,items){
+
+			var data = {
+				list:items,
+			};
+
+			data.menu = makeTree(JSON.parse(JSON.stringify(items)));
+			cb(err,data);
+		});
+	}else{
+		cb(err,{list:{},menu:{}});
+	}	
 };
 
 
@@ -61,7 +66,6 @@ Menu.statics.createMenu = function(req,res){
 		parent:post.parent,
 		link:post.link
 	};
-	console.log(data);
 	this.create(data,function(err,response){
 		res.send(response);
 	});
