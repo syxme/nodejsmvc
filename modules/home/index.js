@@ -22,11 +22,11 @@ BasicModule.prototype.admin = function(req,callback){
 BasicModule.prototype.render = function(req,res,callback){
 	
 	var ctx = {
-		title:"MVC Engine"
+		title:"home_megan"
 	};
 
 
-	ctx = lead.view("home_megan")(ctx);
+	ctx.module = lead.view("home_megan")(ctx);
 
 	callback(null,ctx);
 

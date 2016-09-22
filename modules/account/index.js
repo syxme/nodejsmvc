@@ -1,9 +1,7 @@
 var async = require("async");
 var _ = require("lodash");
 
-var BasicModule = function(){
-   
-}
+var BasicModule = function(){}
 BasicModule.prototype.info = {
 	title:"Пользователи",
 	link:"Пользователи",

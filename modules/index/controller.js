@@ -19,6 +19,7 @@ var exec = function(req, res) {
 		module	:module 
 	},function(err,results){
 		ctx = lead.merge(results);
+		ctx.title = (req.module)?ctx.module.title:ctx.title;
 		console.timeEnd('test');
 		res.send(lead.view('index_layout')(ctx));
 	});		

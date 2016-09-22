@@ -1,0 +1,85 @@
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+var ObjectId = Schema.Types.ObjectId;
+
+Menu = new Schema({
+	name	:String,
+	order	:{type: Number, default: 0},
+	parent	:{type: ObjectId, ref: 'Menu'},   
+	link	:{type: String, default: '/' }
+});
+
+Menu.statics.access = {
+	all: ['create_category'],
+	user: [],
+	admin: ['create_category', 'changeName', 'delete', 'updateLink']
+}
+
+function makeTree(arr,item){
+	if(!item){
+		var menu = [],tmp;
+		for (i in arr) {
+			if (typeof arr[i].parent =="undefined"){
+				tmp = arr[i];
+				tmp.menu = arr.reduce(function(result,subItem){
+					if(tmp._id === subItem.parent) result.push(makeTree(arr,subItem));
+					return result;
+				},[]);
+				menu.push(tmp);
+			}
+		}
+		return menu;
+	}else{
+		item.menu = arr.reduce(function(result,subItem){
+			if(item._id === subItem.parent)result.push(makeTree(arr,subItem));
+			return result;
+		},[]);
+		return item;
+	}	
+}
+
+Menu.statics.getMenu = function(cb){
+	this.find({},function(err,items){
+		if (items){
+			var data = {
+				list:items,
+			};
+			data.menu = makeTree(JSON.parse(JSON.stringify(items)));
+			cb(err,data);
+		}else{
+			cb(err,{list:{},menu:{}});
+		}	
+	});
+
+};
+
+
+Menu.statics.create_category = function(req,res){
+	var post =req.body;
+	if (!post.parent){
+		post.parent = ObjectId("root");
+	}
+
+	var data = {
+		name: post.name,
+		parent:post.parent,
+		link:post.link
+	};
+	this.create(data,function(err,response){
+		res.send(response);
+	});
+};
+
+Menu.statics.changeName = function(req,res){
+	res.send('changeName');
+};
+
+Menu.statics.delete = function(req,res){
+	res.send('delete');
+};
+
+Menu.statics.updateLink = function(req,res){
+	res.send('updateLink');
+};
+
+module.exports = models ={Menu: mongoose.model("menu", Menu)};
