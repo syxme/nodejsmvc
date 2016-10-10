@@ -9,28 +9,33 @@ var	view 		= {};
 
 module.exports.ex = function(cb){
 	lead.walk("modules", function(err, file) {
-		Object.keys(file).forEach(function (num) {
-			tmp = require("../"+file[num]);
-			if (lead.frs(lead.fn(file[num]))=="hbs"){
-				view[lead.hbsName(file[num])] = fs.readFileSync(file[num], 'utf8');
-			    Handlebars.partials[lead.hbsName(file[num])] = Handlebars.compile(view[lead.hbsName(file[num])]);			  
+		for (i in file) {
+			tmp = require("../"+file[i]);
+			if (lead.frs(lead.fn(file[i]))=="hbs"){
+				view[lead.hbsName(file[i])] = fs.readFileSync(file[i], 'utf8');
+				Handlebars.partials[lead.hbsName(file[i])] = Handlebars.compile(view[lead.hbsName(file[i])]);			  
 			}else{
-				switch (lead.fn(file[num])){
+				switch (lead.fn(file[i])){
 					case config.compiler.scanOptions.index:
-						context[Object.keys(tmp)] = tmp[Object.keys(tmp)];
-						break;
-					case config.compiler.scanOptions.model:
-						models[Object.keys(tmp)] = tmp[Object.keys(tmp)];
-						break;
+					context[Object.keys(tmp)] = tmp[Object.keys(tmp)];
+					break;
+					case config.compiler.scanOptions.model:					
+					models[Object.keys(tmp)] = tmp[Object.keys(tmp)];
+					break;
 					case config.compiler.scanOptions.controller:
-						controllers[Object.keys(tmp)] = tmp[Object.keys(tmp)];
-						break;
+					controllers[Object.keys(tmp)] = tmp[Object.keys(tmp)];
+					break;
 					default:
-						break;
+					break;
 				}
 			}
+		};
+
+		lead.walk("templates", function(err, file) {
+			for (i in file) {
+				get_tpl_seg();//проверка
+			}
 		});
-		
 
 		var engine = {
 			controllers	:controllers,

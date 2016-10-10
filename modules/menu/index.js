@@ -19,7 +19,7 @@ BasicModule.prototype.admin = function(req,callback){
 	};
 
 	async.auto({
-		menu:function(cb,results){ models.Menu.getMenu(cb)}
+		menu:function(cb,results){ models.menu.getMenu(cb)}
 	},function(err,results){
 		ctx = _.assign(ctx,results.menu);
 		ctx = _.assign(ctx,results.list);

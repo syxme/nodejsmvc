@@ -31,6 +31,13 @@ var view = function (name) {
 }
 
 
+var get_tpl_seg = function(tpl){
+  var mach = /(.*)\/(.*)\/(.*).hbs/;
+  var resp = tpl.match(mach);
+  return (resp)?resp:false;
+}
+
+
 var merge = function (data) {
   var main = (_.pick(data, 'context')).context;
   var sub = _.omit(data, 'context');
@@ -63,6 +70,7 @@ var Key = function (e){return Object.keys(e)};
 
 module.exports = lead = {
   segments:segments,
+  get_tpl_seg:get_tpl_seg,
   hbsName:hbsName,
   merge:merge,
   walk:walk,

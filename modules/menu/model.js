@@ -82,4 +82,4 @@ Menu.statics.updateLink = function(req,res){
 	res.send('updateLink');
 };
 
-module.exports = models ={Menu: mongoose.model("menu", Menu)};
+module.exports = models ={menu: mongoose.model("menu", Menu)};

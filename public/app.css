@@ -59,3 +59,78 @@
     left: 100px;
     top: 0px;
 }
+
+.categories {
+    min-height: 100px;
+    background-color: rgba(21, 31, 43, 0.74);
+    padding: 10px 10px 5px 10px;
+    margin: 10px 0px 10px 10px;
+    border: 1px solid #6492bb;
+    color: #FFF;
+    border-radius: 5px;
+}
+.categories:hover{
+    background-color: #1a4965;
+
+}
+.path-category{
+    background-color: #2e750b;
+    padding: 3px 10px;
+    float: left;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.name-category{
+    background-color: #3269ad;
+    padding: 3px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+
+
+
+/* CSS Tree menu styles */
+
+li.tree-cat 
+{ 
+    position: relative; 
+    margin-left: -15px;
+    list-style: none;
+}
+
+li.tree-cat input
+{
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+    height: 1em;
+    width: 1em;
+    float: left;
+}
+li.tree-cat input ~ ol
+{
+    background: url("/img/category/toggle-small-expand.png") 40px 0 no-repeat;
+    margin: -1.65em 0 0 -44px;
+    height: 1.5em;
+}
+li.tree-cat input ~ ol > li { display: none; margin-left: -14px !important; padding-left: 1px; }
+li.tree-cat label
+{
+    background: url("/img/category/folder-horizontal.png") 15px 1px no-repeat;
+    cursor: pointer;
+    display: block;
+    padding-left: 37px;
+}
+
+li.tree-cat input:checked ~ ol
+{
+    background: url("/img/category/toggle-small.png") 40px 5px no-repeat;
+    margin: -2em 0 0 -44px;
+    padding: 2em 0 0 80px;
+    height: auto;
+}
+li.tree-cat input:checked ~ ol > li { display: block; margin: 0 0 0.125em;  /* 2px */}
+li.tree-cat input:checked ~ ol > li:last-child { margin: 0 0 0.063em; /* 1px */ }

@@ -1,0 +1,9 @@
+<ol>
+	{{#each cat}}
+	<li data-id="{{_id}}" data-name="{{name}}" data-path="{{path}}" data-link="{{link}}"  class="tree-cat">
+		<input type="checkbox" id="{{_id}}"> 
+		<label for="{{_id}}" class="edit-tree">{{name}}</label> 
+		{{#if cat}}{{> category_item}}{{/if}}
+	</li>
+	{{/each}}
+</ol>

@@ -1,0 +1,101 @@
+
+<div class="row">
+	<div class=""> 
+		{{> category_item}}
+	</div>
+	<button type="button" style="margin-left: 15px;" class="btn btn-default add-menu-item-root" data-toggle="tooltip" data-placement="right" title="Добавить пункт меню в корневом уровне.">Добавить элемент</button>
+
+</div>
+<!-- Button trigger modal -->
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Добавление элемента</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+
+					<input type="hidden" class="form-control edit-parent" value="">
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Полный путь:</label>
+						<input type="text" class="form-control edit-path" disabled>
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Название ссылки:</label>
+						<input type="text" class="form-control edit-name">
+					</div>
+					<div class="form-group">
+						<label for="message-text" class="control-label">URL:</label>
+						<input type="text" class="form-control edit-link">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary add-item">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<script type="text/javascript">
+
+
+
+	$( document ).ready(function() {
+
+
+		$(".edit-tree").click(function(e){
+			var target = $(e.currentTarget).parent();
+
+			var id = target.data('id');
+			var path = target.data('path');
+			var name = target.data('name');
+
+			$(".edit-parent").val(id);
+			$(".edit-path").val(path);
+
+			var modal = $(".modal");
+			modal.find('.modal-title').text('Добавление подменю ' + name)
+
+			$('#myModal').modal('show');
+			e.stopPropagation();
+		});
+
+
+		$(".add-menu-item-root").click(function(e){
+			var modal = $(".modal");
+			modal.find('.modal-title').text('Добавление меню');
+			$('#myModal').modal('show');
+			e.stopPropagation();
+		});
+
+
+
+
+
+		$(".add-item").click(function(){
+			var name = $(".edit-name").val();
+			var parent = $(".edit-parent").val();
+			var link = $(".edit-link").val();
+			var data = {
+				name:name,
+				parent:parent,
+				link:link
+			};
+
+			if (name!=""&&link!=""){
+				$.post("/api/category/create_category",data,function(res){
+					$('#myModal').modal('hide')
+				});
+			}
+		})
+	});
+</script>

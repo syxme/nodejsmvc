@@ -1,6 +1,7 @@
 var _ = require('lodash');
 
 var hasAccess = function(funcName, user, accessLevels) {
+	console.log(accessLevels.all,funcName);
 	if (_.indexOf(accessLevels.all, funcName) >= 0) {
 		return true;
 	} else if (_.indexOf(accessLevels.user, funcName) >= 0) {
@@ -21,10 +22,7 @@ module.exports = function(schema, options) {
 		if (req.session.user){
 			res.ctx.user = req.session.user
 		}
-		//console.log(typeof req.body.namex);
-		if (req.body){
-			req.attr = JSON.parse(JSON.stringify(req.body));
-		}
+
 		segments = _.without(req.path.split('/'), "");
 		func = (_ref = segments[2]) != null ? _ref : false;
 

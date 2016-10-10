@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="ico/favicon.png">
+    {{meta}}
+    <title>{{title}}</title>
+    {{> index_scripts}}
+  </head>
+  <body data-spy="scroll" data-offset="0" data-target="#navigation">
+
+    {{{menu}}}
+
+    {{> index_header}}
+    {{> index_contact}}
+    {{#if module}}
+      {{{module}}}
+    {{/if}}
+    
+    {{> index_footer}}
+
+  <script src="js/bootstrap.js"></script>
+  </body>
+</html>
