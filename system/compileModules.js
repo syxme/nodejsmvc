@@ -33,7 +33,7 @@ module.exports.ex = function(cb){
 
 		lead.walk("templates", function(err, file) {
 			for (i in file) {
-				get_tpl_seg();//проверка
+				//get_tpl_seg();//проверка
 			}
 		});
 

@@ -1,5 +1,7 @@
 var async = require("async"),
 	Handlebars	= require("handlebars");
+var _ = require("lodash");
+
 
 var exec = function(req, res) {
 	console.time('test');
@@ -19,7 +21,10 @@ var exec = function(req, res) {
 		module	:module 
 	},function(err,results){
 		ctx = lead.merge(results);
-		ctx.title = (req.module)?ctx.module.title:ctx.title;
+  		_.assign(ctx,ctx.module);
+		console.log(ctx);
+
+		//ctx = (req.module)?ctx.module.title:ctx.title;
 		console.timeEnd('test');
 		res.send(lead.view('index_layout')(ctx));
 	});		

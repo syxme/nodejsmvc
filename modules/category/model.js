@@ -10,7 +10,7 @@ category = new Schema({
 });
 
 category.statics.access = {
-	all: ['create_category'],
+	all: ['create_category',"remove_category"],
 	user: [],
 	admin: ['create_category', 'changeName', 'delete', 'updateLink']
 }
@@ -76,7 +76,21 @@ category.statics.changeName = function(req,res){
 	res.send('changeName');
 };
 
-category.statics.delete = function(req,res){
+var removeChilds = function(id){
+	models.category.remove({_id:id},function(err,e){
+		models.category.findOne({parent:id},function(err,item){
+			if (item){
+				removeChilds(item._id);
+			}else{
+				return true;
+			}
+		});
+	});
+};
+
+category.statics.remove_category = function(req,res){
+	var id = req.body.id;
+	removeChilds(id);
 	res.send('delete');
 };
 

@@ -106,31 +106,38 @@ li.tree-cat input
     opacity: 0;
     z-index: 2;
     cursor: pointer;
-    height: 1em;
-    width: 1em;
+    height: 25px;
+    width: 36px;
     float: left;
 }
 li.tree-cat input ~ ol
 {
-    background: url("/img/category/toggle-small-expand.png") 40px 0 no-repeat;
-    margin: -1.65em 0 0 -44px;
-    height: 1.5em;
+    background: url("/img/category/toggle-small-expand.png") 40px 4px no-repeat;
+    margin: -32px 0 0 -44px;
+    height: 35px;
 }
+
 li.tree-cat input ~ ol > li { display: none; margin-left: -14px !important; padding-left: 1px; }
-li.tree-cat label
+li.tree-cat > .list-itm
 {
-    background: url("/img/category/folder-horizontal.png") 15px 1px no-repeat;
+    background: url("/img/category/folder-horizontal.png") 15px 10px no-repeat;
     cursor: pointer;
     display: block;
-    padding-left: 37px;
+    padding-left: 40px;
+    font-size: 30px;
+    background-size: 20px;
 }
 
 li.tree-cat input:checked ~ ol
 {
-    background: url("/img/category/toggle-small.png") 40px 5px no-repeat;
+    background: url("/img/category/toggle-small.png") 40px 0px no-repeat;
     margin: -2em 0 0 -44px;
     padding: 2em 0 0 80px;
     height: auto;
 }
 li.tree-cat input:checked ~ ol > li { display: block; margin: 0 0 0.125em;  /* 2px */}
 li.tree-cat input:checked ~ ol > li:last-child { margin: 0 0 0.063em; /* 1px */ }
+
+.tree-icon{
+    margin-left: 5px;
+}

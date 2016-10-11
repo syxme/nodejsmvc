@@ -79,6 +79,14 @@
 
 
 
+		
+		$(".edit-remove").click(function(e){
+			var target = $(e.currentTarget).parent();
+			var id = target.data('id');
+			$.post("/api/category/remove_category",{id:id},function(res){
+				target.closest("li").remove();
+			});
+		});
 
 
 		$(".add-item").click(function(){
@@ -96,6 +104,6 @@
 					$('#myModal').modal('hide')
 				});
 			}
-		})
+		});
 	});
 </script>
