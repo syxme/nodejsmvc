@@ -22,8 +22,6 @@ var exec = function(req, res) {
 	},function(err,results){
 		ctx = lead.merge(results);
   		_.assign(ctx,ctx.module);
-		console.log(ctx);
-
 		//ctx = (req.module)?ctx.module.title:ctx.title;
 		console.timeEnd('test');
 		res.send(lead.view('index_layout')(ctx));

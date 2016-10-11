@@ -18,6 +18,7 @@ initApi = function(app) {
 		Object.keys(e.controllers).forEach(function (i) {
 
 			Object.keys(e.controllers[i].routes).forEach(function(route){
+				console.log("ROUTE:"+e.controllers[i].routes[route]);
 				if (e.controllers[i].execute){
 					app.get(e.controllers[i].routes[route], e.controllers[i].execute);
 				}else{

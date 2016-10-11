@@ -31,14 +31,24 @@ BasicModule.prototype.admin = function(req,callback){
 }
 
 BasicModule.prototype.render = function(req,res,callback){
-	var ctx = {};
+	var ctx = {
+		title:"Категории"
+	};
 	if (req.session.user){
 		ctx.user = req.session.user;
 	}
 
-	
-
-	ctx = lead.view('menu_index')(ctx);
+	// async.auto({
+	// 	cat:function(cb,results){ models.category.getProducts(cb)}
+	// },function(err,results){
+	// 	ctx = _.assign(ctx,results.cat);
+	// 	ctx = _.assign(ctx,results.list);
+	// 	ctx = lead.view('category_edit')(ctx);
+	// 	callback(err,ctx);
+	// });
+	ctx.name = req.params.name;
+	ctx.title = (req.params.name)?req.params.name:ctx.title;
+	ctx.module  = lead.view('home_megan')(ctx);
 	callback(null,ctx);
 }
 module.exports = {category:new BasicModule};
