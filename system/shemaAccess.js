@@ -24,6 +24,7 @@ module.exports = function(schema, options) {
 		}
 
 		segments = _.without(req.path.split('/'), "");
+		console.log(segments);
 		func = (_ref = segments[2]) != null ? _ref : false;
 
 		if (!(func || typeof this.access !== 'object')) {

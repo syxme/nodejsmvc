@@ -6,8 +6,13 @@ category = new Schema({
 	name	:String,
 	order	:{type: Number, default: 0},
 	parent	:{type: ObjectId, ref: 'category'},   
-	link	:{type: String, default: '/' }
+	link	:{type: String, default: '/' },
+	description:String,
+	image:String,
+	inputs:[{}]
 });
+
+
 
 category.statics.access = {
 	all: ['create_category',"remove_category"],
@@ -40,7 +45,27 @@ function makeTree(arr,item,path){
 	}	
 }
 
-category.statics.getCategory = function(cb){
+function findParent(list,query,item){
+	for (i in list) {
+		if (query){	
+			if (list[i].link == query){
+				list[i].active = true;
+				list = findParent(list,null,list[i].parent);
+			}
+		}
+		if (item){	
+			if (list[i]._id == item){
+				list[i].active = true;
+				list = findParent(list,null,list[i].parent);
+				
+			}
+		}
+	}
+	return list;
+}
+
+category.statics.getCategory = function(cb,params){
+	params = (!params)?{}:params;
 	this.find({},function(err,items){
 		if (items){
 			var data = {
@@ -55,6 +80,23 @@ category.statics.getCategory = function(cb){
 
 };
 
+category.statics.getMenuCategory = function(cb,params){
+	params = (!params)?{}:params;
+	this.find({},function(err,items){
+		if (items){
+			var data = {
+				list:items,
+			};
+			data.cat = makeTree(findParent(JSON.parse(JSON.stringify(items)),params.item));
+			cb(err,data);
+		}else{
+			cb(err,{list:{},cat:{}});
+		}	
+	});
+
+};
+
+
 
 category.statics.create_category = function(req,res){
 	var post =req.body;
@@ -62,12 +104,8 @@ category.statics.create_category = function(req,res){
 		post.parent = ObjectId("root");
 	}
 
-	var data = {
-		name: post.name,
-		parent:post.parent,
-		link:post.link
-	};
-	this.create(data,function(err,response){
+
+	this.create(post,function(err,response){
 		res.send(response);
 	});
 };

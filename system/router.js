@@ -2,7 +2,7 @@ var	compile = new require("./compileModules"),
 helpers = require("./utils"),
 model	= require("./models"),
 fs 		= require('fs');
-
+pedata 	= require('./middleware/pedata');
 const api = "/api/";
 var subvars = function (req,res,next) {
 	
@@ -20,9 +20,9 @@ initApi = function(app) {
 			Object.keys(e.controllers[i].routes).forEach(function(route){
 				console.log("ROUTE:"+e.controllers[i].routes[route]);
 				if (e.controllers[i].execute){
-					app.get(e.controllers[i].routes[route], e.controllers[i].execute);
+					app.get(e.controllers[i].routes[route],[pedata,e.controllers[i].execute]);
 				}else{
-					app.get(e.controllers[i].routes[route], [function (req,res,next) {
+					app.get(e.controllers[i].routes[route], [pedata,function (req,res,next) {
 						req.module = i;
 						next();
 					},e.controllers.index.execute]);

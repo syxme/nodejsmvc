@@ -1,14 +1,14 @@
 
 body {
   background-color: #f2f2f2;
-    font-family: "Lato";
-    font-weight: 300;
-    font-size: 16px;
-    color: #555;
-    padding-top: 50px;
+  font-family: "Lato";
+  font-weight: 300;
+  font-size: 16px;
+  color: #555;
+  padding-top: 50px;
 
-    -webkit-font-smoothing: antialiased;
-    -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Titles */
@@ -57,7 +57,7 @@ a:after {
     transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 
- hr {
+hr {
     display: block;
     height: 1px;
     border: 0;
@@ -67,94 +67,132 @@ a:after {
 }
 
 
-/* ==========================================================================
-   Wrap Sections
-   ========================================================================== */
 
 #headerwrap {
-	background-color: #34495e;
-	padding-top: 60px;
+ background-color: #34495e;
+ padding-top: 60px;
 }
 
 #headerwrap h1 {
-	margin-top: 30px;
-	color: white;
-	font-size: 70px;
-	
+ margin-top: 30px;
+ color: white;
+ font-size: 70px;
+
 }
 
 #headerwrap h3 {
-	color: white;
-	font-size: 30px;
+ color: white;
+ font-size: 30px;
 }
 
 #headerwrap h5 {
-	color: white;
-	font-weight: 700;
-	text-align: left;
+ color: white;
+ font-weight: 700;
+ text-align: left;
 }
 
 #headerwrap p {
-	text-align: left;
-	color: white
+ text-align: left;
+ color: white
 }
 
-/* intro Wrap */
 
 #intro {
-	padding-top: 50px;
-	border-top: #bdc3c7 solid 5px;
+ padding-top: 50px;
+ border-top: #bdc3c7 solid 5px;
 }
 
 #features {
-	padding-top: 50px;
-	padding-bottom: 50px;
+ padding-top: 50px;
+ padding-bottom: 50px;
 }
 
 #features .ac a{
-	font-size: 20px;
+ font-size: 20px;
 }
 
-/* Showcase Wrap */
 
 #showcase {
-	display: block;
-	background-color: #34495e;
-	padding-top: 50px;
-	padding-bottom: 50px;
+ display: block;
+ background-color: #34495e;
+ padding-top: 50px;
+ padding-bottom: 50px;
 }
 
 #showcase h1 {
-	color: white;
+ color: white;
 }
 
 #footerwrap {
-	background-color: #2f2f2f;
-	color: white;
-	padding-top: 40px;
-	padding-bottom: 60px;
-	text-align: left;
+ background-color: #2f2f2f;
+ color: white;
+ padding-top: 40px;
+ padding-bottom: 60px;
+ text-align: left;
 }
 
 #footerwrap h3 {
-	font-size: 28px;
-	color: white;
+ font-size: 28px;
+ color: white;
 }
 
 #footerwrap p {
-	color: white;
-	font-size: 18px;
+ color: white;
+ font-size: 18px;
 }
 
 /* Copyright Wrap */
 
 #c {
-	background: #222222;
-	padding-top: 15px;
-	text-align: right;
+ background: #222222;
+ padding-top: 15px;
+ text-align: right;
 }
 
 #c p {
-	color: white
+ color: white
 }
 
+
+
+.left_block_header{
+    font-size: 20px;
+}
+.left_block_content{
+
+}
+.left_block{
+    min-height: 150px;
+    margin: 10px 0px
+}
+
+.menu_category{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.menu_category a.item.active{
+    border-bottom: 3px solid #555;
+}
+.menu_category .item {
+    padding: 5px;
+    border-bottom: 1px solid #c1c1c1;
+    cursor: pointer;
+    display: block;
+    color: #000;
+}
+.menu_category .item:hover{
+    background-color: #295cbb;
+    color: #FFF;
+}
+.submenu_category{
+    display: none;  
+}
+.submenu_category a.item.active{
+    border-bottom: 3px solid #555;
+}
+.submenu_category.active{
+    display: block;
+    list-style: none;
+    padding-left: 25px;
+}
