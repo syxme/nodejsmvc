@@ -16,9 +16,8 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">Добавление элемента</h4>
 			</div>
-			<div class="modal-body">
-				<form>
-
+			<form>
+				<div class="modal-body">
 					<input type="hidden" class="form-control edit-parent" value="">
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">Полный путь:</label>
@@ -32,15 +31,15 @@
 						<label for="recipient-name" class="control-label">Описание:</label>
 						<input type="text" class="form-control edit-description">
 					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary add-item">Save changes</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary add-item">Save changes</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
 
 
@@ -102,7 +101,8 @@
 
 			if (name!=""){
 				$.post("/api/category/create_category",data,function(res){
-					$('#myModal').modal('hide')
+					$('#myModal').modal('hide');
+					window.location = '/admin/category/';
 				});
 			}
 		});

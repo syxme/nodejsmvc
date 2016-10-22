@@ -1,44 +1,37 @@
 function translit(text){
-// Символ, на который будут заменяться все спецсимволы
-var space = '_'; 
-// Берем значение из нужного поля и переводим в нижний регистр
-var text = text.toLowerCase();
 
-// Массив для транслитерации
-var transl = {
-  'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'zh', 
-  'з': 'z', 'и': 'i', 'й': 'j', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n',
-  'о': 'o', 'п': 'p', 'р': 'r','с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'h',
-  'ц': 'c', 'ч': 'ch', 'ш': 'sh', 'щ': 'sh','ъ': "", 'ы': 'y', 'ь': "", 'э': 'e', 'ю': 'yu', 'я': 'ya',
-  ' ': space, '_': space, '`': space, '~': space, '!': space, '@': space,
-  '#': space, '$': space, '%': space, '^': space, '&': space, '*': space, 
-  '(': space, ')': space,'-': space, '\=': space, '+': space, '[': space, 
-  ']': space, '\\': space, '|': space, '/': space,'.': space, ',': space,
-  '{': space, '}': space, '\'': space, '"': space, ';': space, ':': space,
-  '?': space, '<': space, '>': space, '№':space
-}
+	var space = '_'; 
+	var text = text.toLowerCase();
 
-var result = '';
-var curent_sim = '';
+	var transl = {
+		'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'zh', 
+		'з': 'z', 'и': 'i', 'й': 'j', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n',
+		'о': 'o', 'п': 'p', 'р': 'r','с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'h',
+		'ц': 'c', 'ч': 'ch', 'ш': 'sh', 'щ': 'sh','ъ': "", 'ы': 'y', 'ь': "", 'э': 'e', 'ю': 'yu', 'я': 'ya',
+		' ': space, '_': space, '`': space, '~': space, '!': space, '@': space,
+		'#': space, '$': space, '%': space, '^': space, '&': space, '*': space, 
+		'(': space, ')': space,'-': space, '\=': space, '+': space, '[': space, 
+		']': space, '\\': space, '|': space, '/': space,'.': space, ',': space,
+		'{': space, '}': space, '\'': space, '"': space, ';': space, ':': space,
+		'?': space, '<': space, '>': space, '№':space
+	}
 
-for(i=0; i < text.length; i++) {
-    // Если символ найден в массиве то меняем его
-    if(transl[text[i]] != undefined) {
-     if(curent_sim != transl[text[i]] || curent_sim != space){
-       result += transl[text[i]];
-       curent_sim = transl[text[i]];
-     }                                                                            
-   }
-    // Если нет, то оставляем так как есть
-    else {
-      result += text[i];
-      curent_sim = text[i];
-    }                              
-  }          
+	var result = '';
+	var curent_sim = '';
 
-  return result;               
-
-
+	for(i=0; i < text.length; i++) {
+		if(transl[text[i]] != undefined) {
+			if(curent_sim != transl[text[i]] || curent_sim != space){
+				result += transl[text[i]];
+				curent_sim = transl[text[i]];
+			}
+		}
+		else {
+			result += text[i];
+			curent_sim = text[i];
+		}
+	}
+	return result;
 }
 
 module.exports = translit;
