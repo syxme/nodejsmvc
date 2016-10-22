@@ -32,10 +32,6 @@
 						<label for="recipient-name" class="control-label">Описание:</label>
 						<input type="text" class="form-control edit-description">
 					</div>
-					<div class="form-group">
-						<label for="message-text" class="control-label">URL:</label>
-						<input type="text" class="form-control edit-link">
-					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -96,17 +92,15 @@
 		$(".add-item").click(function(){
 			var name = $(".edit-name").val();
 			var parent = $(".edit-parent").val();
-			var link = $(".edit-link").val();
 			var description = $(".edit-description").val();
 
 			var data = {
 				name:name,
 				parent:parent,
-				link:link,
 				description:description
 			};
 
-			if (name!=""&&link!=""){
+			if (name!=""){
 				$.post("/api/category/create_category",data,function(res){
 					$('#myModal').modal('hide')
 				});

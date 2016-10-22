@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
-
+var translit = require('./utils/translit');;
+console.log(translit);
 category = new Schema({
 	name	:String,
 	order	:{type: Number, default: 0},
@@ -79,9 +80,9 @@ category.statics.getCategory = function(cb,params){
 	});
 
 };
-
 category.statics.getMenuCategory = function(cb,params){
 	params = (!params)?{}:params;
+
 	this.find({},function(err,items){
 		if (items){
 			var data = {
@@ -103,7 +104,7 @@ category.statics.create_category = function(req,res){
 	if (!post.parent){
 		post.parent = ObjectId("root");
 	}
-
+	post.link = Math.random().toString().substr(3,3) +"_"+ translit(post.name);
 
 	this.create(post,function(err,response){
 		res.send(response);
